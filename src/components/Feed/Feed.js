@@ -2,7 +2,7 @@ import React, { useState, useEffect } from "react";
 import { mockJson } from "../mockJson";
 import "./feed.scss";
 import Card from "../Card/Card";
-import { useHistory, useLocation } from "react-router-dom";
+import { useHistory } from "react-router-dom";
 
 export default function Feed(props) {
   const [input, setInput] = useState("");
@@ -12,14 +12,17 @@ export default function Feed(props) {
   let history = useHistory();
 
   const handleInput = (e) => {
-    if (e.target.value === "") {
+    setInput(e.target.value);
+    if (e.target.value) {
+      setInput(e.target.value);
+    } else {
       setCards(mockJson);
     }
-    setInput(e.target.value);
   };
 
   const handleSearch = (searchQuery) => {
-    let searchResults = cards.filter(function search(val) {
+
+    let searchResults = mockJson.filter(function search(val) {
       return (
         val.name.toLowerCase().includes(searchQuery.toLowerCase()) ||
         val.description.toLowerCase().includes(searchQuery.toLowerCase())
@@ -28,8 +31,30 @@ export default function Feed(props) {
 
     if (searchQuery.length) {
       history.push("/feed/search?q=" + searchQuery);
+    } else {
+      history.push("");
     }
     setCards(searchResults);
+  };
+
+  const handleSort = (sortBy) => {
+    setSelect(sortBy);
+    let sorted = cards;
+    if (sortBy === "name") {
+      sorted = cards.sort((a, b) => {
+        if (a.name > b.name) return 1;
+        if (a.name < b.name) return -1;
+      });
+    }
+    if (sortBy === "dateLastEdited") {
+      sorted = cards.sort(
+        (a, b) => new Date(a.dateLastEdited) - new Date(b.dateLastEdited)
+      );
+    }
+    if (sortBy === "") {
+      setCards(mockJson);
+    }
+    setCards(sorted);
   };
 
   useEffect(() => {
@@ -47,17 +72,23 @@ export default function Feed(props) {
         <div className="row">
           <div className="search_input">
             Search : <input value={input} onChange={handleInput} />
-            <span onClick={() => handleSearch(input)}>🔎</span>
+            <span onClick={() => handleSearch(input)} className="search_button">
+              🔎
+            </span>
           </div>
           <div className="sortby_select">
             Sort by :{" "}
-            <select onChange={(e) => setSelect(e.target.value)} value={select}>
+            <select
+              onChange={(e) => {
+                handleSort(e.target.value);
+              }}
+              value={select}
+            >
               <option value="" selected hidden>
                 Choose here
               </option>
               <option value="name">Title</option>
               <option value="dateLastEdited">Last Edited Date</option>
-              {select && <option value="">Unsort</option>}
             </select>
           </div>
         </div>
@@ -75,5 +106,3 @@ export default function Feed(props) {
     </>
   );
 }
-
-// export default withRouter(Feed);

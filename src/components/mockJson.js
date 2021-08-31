@@ -1,19 +1,5 @@
 export const mockJson = [
   {
-    name: "The Lord of the Rings: The Return of the King",
-    image: "http://lorempixel.com/640/480",
-    description:
-      "Vel voluptatem id repudiandae aut omnis. Deleniti tempore aliquam quia magnam eos. Sunt saepe nisi delectus.",
-    dateLastEdited: "2018-05-19T12:33:25.545Z",
-  },
-  {
-    name: "The Lion King",
-    image: "http://lorempixel.com/640/480",
-    description:
-      "Vel voluptatem id repudiandae aut omnis. Deleniti tempore aliquam quia magnam eos. Sunt saepe nisi delectus.",
-    dateLastEdited: "2018-05-19T12:33:25.545Z",
-  },
-  {
     name: "Customer Assurance Liaison",
     image: "http://lorempixel.com/640/480",
     description:

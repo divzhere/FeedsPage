@@ -13,6 +13,9 @@
     .sortby_select,
     .search_input {
         margin-top: 20px;
+        .search_button {
+            cursor: pointer;
+        }
     }
 }
 
