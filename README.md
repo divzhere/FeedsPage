@@ -1,4 +1,5 @@
-
+## Deployment
+[![Netlify Status](https://api.netlify.com/api/v1/badges/14041dc7-2943-4511-adf6-a3aea7f42d7b/deploy-status)](https://app.netlify.com/sites/determined-bassi-51df89/deploys)
 ## Available Scripts
 
 In the project directory, you can run:
