@@ -1,0 +1,36 @@
+@import '../../styles/typography.scss';
+
+.table_section {
+    .heading {
+        padding: 20px 40px;
+        @extend .heading_text;
+    }
+
+    table {
+        width: 100%;
+        margin-bottom: 1rem;
+        background-color: transparent;
+        border-collapse: collapse;
+        @extend .subtitle_text;
+
+        thead {
+            th {
+                font-weight: bold;
+            }
+        }
+
+        th,
+        td {
+            padding: .75rem;
+            vertical-align: top;
+            border-top: 1px solid #dee2e6;
+        }
+    }
+
+    .table {
+
+        padding: 1rem;
+        overflow-x: auto;
+    }
+
+}

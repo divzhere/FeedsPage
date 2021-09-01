@@ -1,3 +1,5 @@
+@import '../../styles/typography.scss';
+
 .card {
     border-radius: 4px;
     margin: 10px;
@@ -17,20 +19,12 @@
     }
 
     .title {
-        font-size: 1.5rem;
-        font-family: "Roboto", "Helvetica", "Arial", sans-serif;
-        font-weight: 400;
-        line-height: 1.334;
-        letter-spacing: 0em;
+        @extend .title_text;
         margin-bottom: 0.35em;
     }
 
     .description {
-        font-size: 0.875rem;
-        font-family: "Roboto", "Helvetica", "Arial", sans-serif;
-        font-weight: 400;
-        line-height: 1.43;
-        letter-spacing: 0.01071em;
+        @extend .subtitle_text;
         color: rgba(0, 0, 0, 0.54);
 
     }

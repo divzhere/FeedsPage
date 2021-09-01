@@ -3,7 +3,8 @@ import { mockJson } from "../mockJson";
 import "./feed.scss";
 import Card from "../Card/Card";
 import { useHistory } from "react-router-dom";
-
+import { extractQuotesText } from "../../utils/utils";
+import Table from "../Table/Table";
 export default function Feed(props) {
   const [input, setInput] = useState("");
   const [select, setSelect] = useState("");
@@ -21,8 +22,24 @@ export default function Feed(props) {
   };
 
   const handleSearch = (searchQuery) => {
+    let quotedText = [];
+    if (searchQuery.includes('"')) {
+      quotedText = extractQuotesText(searchQuery);
+    }
+    const multiSearchAnd = (text, searchWords) =>
+      searchWords.every((el) => {
+        return text.match(new RegExp(el, "i"));
+      });
 
     let searchResults = mockJson.filter(function search(val) {
+      if (quotedText.length > 0) {
+        var str = '"a string"';
+        str = str.replace(/^"|"$/g, "");
+        return (
+          multiSearchAnd(val.name, quotedText) ||
+          multiSearchAnd(val.description, quotedText)
+        );
+      }
       return (
         val.name.toLowerCase().includes(searchQuery.toLowerCase()) ||
         val.description.toLowerCase().includes(searchQuery.toLowerCase())
@@ -103,6 +120,8 @@ export default function Feed(props) {
           )}
         </div>
       </section>
+
+      {cards.length && <Table cards={cards} />}
     </>
   );
 }
