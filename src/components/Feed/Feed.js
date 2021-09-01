@@ -79,6 +79,7 @@ export default function Feed(props) {
     if (q) {
       handleSearch(q);
     }
+    // eslint-disable-next-line
   }, []);
   return (
     <>
