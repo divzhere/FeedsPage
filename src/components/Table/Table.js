@@ -15,8 +15,8 @@ export default function Table({ cards }) {
             </tr>
           </thead>
           <tbody>
-            {cards.map((card) => (
-              <tr>
+            {cards.map((card, i) => (
+              <tr key={i}>
                 <td>{card.name}</td>
                 <td>{card.image}</td>
                 <td>{card.description}</td>

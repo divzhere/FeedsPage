@@ -33,8 +33,6 @@ export default function Feed(props) {
 
     let searchResults = mockJson.filter(function search(val) {
       if (quotedText.length > 0) {
-        var str = '"a string"';
-        str = str.replace(/^"|"$/g, "");
         return (
           multiSearchAnd(val.name, quotedText) ||
           multiSearchAnd(val.description, quotedText)
